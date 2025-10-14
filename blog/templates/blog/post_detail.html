@@ -8,6 +8,12 @@
             <time class="date">
                 {{ post.published_date }}
             </time>
+        {% else %}
+            <aside class="actions">
+                <form action="{% url 'post_publish' pk=post.pk %}" method="post" class="post-form">{% csrf_token %}
+                    <input type="submit" class="btn btn-secondary" value="Publish" method="post">
+                </form>
+            </aside>
         {% endif %}
         <aside class="post">
             {% if user.is_authenticated %}
